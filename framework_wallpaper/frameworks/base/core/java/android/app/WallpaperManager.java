@@ -44,6 +44,7 @@ import android.util.Log;
 import android.view.ViewRootImpl;
 import android.view.WindowManager;
 import android.view.WindowManagerGlobal;
+import android.view.Surface;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -822,6 +823,7 @@ public class WallpaperManager {
         DisplayMetrics metrics = new DisplayMetrics();
         wm.getDefaultDisplay().getMetrics(metrics);
         bm.setDensity(metrics.noncompatDensityDpi);
+        final int rot = wm.getDefaultDisplay().getRotation();
 
         if (width <= 0 || height <= 0
                 || (bm.getWidth() == width && bm.getHeight() == height)) {
@@ -829,6 +831,7 @@ public class WallpaperManager {
         }
 
         // This is the final bitmap we want to return.
+        Log.w("Richard", "wallpaper settings: width :" + width + "  height : " + height);
         try {
             Bitmap newbm = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
             newbm.setDensity(metrics.noncompatDensityDpi);
@@ -840,6 +843,8 @@ public class WallpaperManager {
 
             int deltaw = width - targetRect.right;
             int deltah = height - targetRect.bottom;
+            Log.w("Richard", "wallpaper settings: targetRect.right :" + targetRect.right + "  targetRect.bottom : " + targetRect.bottom);
+            Log.w("Richard", "wallpaper settings: deltaw :" + deltaw + "  deltah : " + deltah);
 
             if (deltaw > 0 || deltah > 0) {
                 // We need to scale up so it covers the entire area.
@@ -855,10 +860,22 @@ public class WallpaperManager {
                 } else {
                     scale = height / (float)targetRect.bottom;
                 }
-                targetRect.right = (int)(targetRect.right*scale);
-                targetRect.bottom = (int)(targetRect.bottom*scale);
+            
+                if (rot == Surface.ROTATION_0 || rot == Surface.ROTATION_180)
+                {
+                    targetRect.right = (int)(targetRect.right*scale);
+                    targetRect.bottom = (int)(targetRect.bottom*scale);
+
+                }
+                else    //90...270 
+                {
+                    targetRect.right = (int)(targetRect.right*scale);
+                    // targetRect.bottom = (int)(targetRect.bottom*scale);
+                }
                 deltaw = width - targetRect.right;
                 deltah = height - targetRect.bottom;
+            Log.w("Richard", "wallpaper settings: targetRect.right :" + targetRect.right + "  targetRect.bottom : " + targetRect.bottom +  " scale " + scale);
+                Log.w("Richard", "wallpaper settings:22222 deltaw :" + deltaw + "  deltah : " + deltah);
             }
 
             targetRect.offset(deltaw/2, deltah/2);
