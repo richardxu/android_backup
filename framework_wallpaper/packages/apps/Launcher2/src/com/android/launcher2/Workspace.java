@@ -854,7 +854,8 @@ public class Workspace extends SmoothPagedView
         }
         new Thread("setWallpaperDimension") {
             public void run() {
-                mWallpaperManager.suggestDesiredDimensions(mWallpaperWidth, mWallpaperHeight);
+                //mWallpaperManager.suggestDesiredDimensions(mWallpaperWidth, mWallpaperHeight);
+                mWallpaperManager.suggestDesiredDimensions(mLauncher.getWindowManager().getDefaultDisplay().getWidth(), mLauncher.getWindowManager().getDefaultDisplay().getHeight());
             }
         }.start();
     }
