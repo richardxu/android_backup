@@ -887,9 +887,11 @@ public class Workspace extends SmoothPagedView
             float offsetInDips = wallpaperTravelWidth * scrollProgress +
                 (mWallpaperWidth - wallpaperTravelWidth) / 2; // center it
             float offset = offsetInDips / (float) mWallpaperWidth;
-            return offset;
+            //return offset;
+            return 0.5f;
         } else {
-            return scrollProgress;
+            return 0.5f;
+            //return scrollProgress;
         }
     }
 
