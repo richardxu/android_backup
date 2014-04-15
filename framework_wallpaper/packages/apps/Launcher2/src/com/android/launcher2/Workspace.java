@@ -47,6 +47,7 @@ import android.util.SparseArray;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Surface;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.ImageView;
@@ -101,7 +102,8 @@ public class Workspace extends SmoothPagedView
 
     private final WallpaperManager mWallpaperManager;
     private IBinder mWindowToken;
-    private static final float WALLPAPER_SCREENS_SPAN = 2f;
+    //private static final float WALLPAPER_SCREENS_SPAN = 3f;
+    private static final float WALLPAPER_SCREENS_SPAN = 1f;
 
     private int mDefaultPage;
 
@@ -839,6 +841,8 @@ public class Workspace extends SmoothPagedView
         Point minDims = new Point();
         Point maxDims = new Point();
         mLauncher.getWindowManager().getDefaultDisplay().getCurrentSizeRange(minDims, maxDims);
+        Display displayWallpaper = mLauncher.getWindowManager().getDefaultDisplay();
+        final int rot = displayWallpaper.getRotation();
 
         final int maxDim = Math.max(maxDims.x, maxDims.y);
         final int minDim = Math.min(minDims.x, minDims.y);
@@ -849,9 +853,17 @@ public class Workspace extends SmoothPagedView
             mWallpaperWidth = (int) (maxDim * wallpaperTravelToScreenWidthRatio(maxDim, minDim));
             mWallpaperHeight = maxDim;
         } else {
-            mWallpaperWidth = Math.max((int) (minDim * WALLPAPER_SCREENS_SPAN), maxDim);
-            mWallpaperHeight = maxDim;
+            if (rot == Surface.ROTATION_0 || rot == Surface.ROTATION_180)
+            {
+                mWallpaperWidth = Math.max((int) (minDim * 2.5f), maxDim);
+                mWallpaperHeight = maxDim ;//(int)( (maxDim *1.0f) / 2);
+            }else {
+                mWallpaperWidth = Math.max((int) (minDim * WALLPAPER_SCREENS_SPAN), maxDim) + 120;
+                mWallpaperHeight = minDim + 50;//(int)( (maxDim *1.0f) / 2);
+
+            }
         }
+        Log.d(TAG, "856=======richard: mWallpaperWidth: " + mWallpaperWidth + " mWallpaperHeight " + mWallpaperHeight);
         new Thread("setWallpaperDimension") {
             public void run() {
                 //mWallpaperManager.suggestDesiredDimensions(mWallpaperWidth, mWallpaperHeight);
