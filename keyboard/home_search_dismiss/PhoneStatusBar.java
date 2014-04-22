@@ -868,7 +868,7 @@ public class PhoneStatusBar extends BaseStatusBar {
             case MotionEvent.ACTION_DOWN:
                 if (!shouldDisableNavbarGestures()) {
                     mHandler.removeCallbacks(mShowSearchPanel);
-                    mHandler.postDelayed(mShowSearchPanel, mShowSearchHoldoff);
+                    //mHandler.postDelayed(mShowSearchPanel, mShowSearchHoldoff); //clear the search panel
                 }
             break;
 
