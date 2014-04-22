@@ -1,0 +1,7 @@
+1, HOME button ----- APK not response the HOME button
+
+2, reference at: http://blog.csdn.net/wdaming1986/article/details/8837023
+  《android4.0自定义锁屏总结【android锁屏研究一】》
+
+3, Final:
+    If we can change the framework source, we can do that way for some apk
