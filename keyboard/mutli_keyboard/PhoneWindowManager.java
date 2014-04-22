@@ -1798,6 +1798,84 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         final int flags = event.getFlags();
         final boolean down = event.getAction() == KeyEvent.ACTION_DOWN;
         final boolean canceled = event.isCanceled();
+		
+		if ((keyCode == KeyEvent.KEYCODE_F1) && !down) {
+            //setDisplayOutput();
+			Intent intent3 = new Intent();
+			ComponentName cn3 =  new ComponentName("com.android.settings", "com.android.settings.Settings");//new ComponentName("com.cooliris.media", "com.cooliris.media.Gallery");
+			intent3.setComponent(cn3);
+			intent3.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent3.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent3);
+		}
+		
+		if ((keyCode == KeyEvent.KEYCODE_F3) && !down) {
+            //setDisplayOutput();
+			Intent intent4 = new Intent();
+			ComponentName cn4 = new ComponentName("com.android.email", "com.android.email.activity.Welcome");
+			intent4.setComponent(cn4);
+			intent4.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent4.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent4);
+		}
+		if ((keyCode == KeyEvent.KEYCODE_F5) && !down) {
+            //setDisplayOutput();
+			Intent intent5 = new Intent();
+			ComponentName cn5 = new ComponentName("com.android.deskclock", "com.android.deskclock.DeskClock");
+			intent5.setComponent(cn5);
+			intent5.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent5.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent5);
+		}
+		
+		if ((keyCode == KeyEvent.KEYCODE_F6) && !down) {
+            //setDisplayOutput();
+			Intent intent6 = new Intent();
+			ComponentName cn6 = new ComponentName("com.android.rk", "com.android.rk.RockExplorer");
+			intent6.setComponent(cn6);
+			intent6.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent6.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent6);
+		}
+		if ((keyCode == KeyEvent.KEYCODE_F9) && !down) {
+            //setDisplayOutput();
+			Intent intent7 = new Intent();
+			ComponentName cn7 = new ComponentName("com.android.gallery3d", "com.android.gallery3d.app.Gallery");
+			intent7.setComponent(cn7);
+			intent7.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent7.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent7);
+		}
+
+		if ((keyCode == KeyEvent.KEYCODE_F10) && !down) {
+            //setDisplayOutput();
+			Intent intent8 = new Intent();
+			ComponentName cn8 = new ComponentName("com.android.music", "com.android.music.MusicBrowserActivity");// new ComponentName("com.cooliris.media", "com.cooliris.media.Gallery");
+			intent8.setComponent(cn8);
+			intent8.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent8.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent8);
+		}
+	
+		if ((keyCode == KeyEvent.KEYCODE_F11) && !down) {
+            //setDisplayOutput();
+			Intent intent9 = new Intent();
+			ComponentName cn9 =  new ComponentName("com.android.calculator2", "com.android.calculator2.Calculator");//new ComponentName("com.cooliris.media", "com.cooliris.media.Gallery");
+			intent9.setComponent(cn9);
+			intent9.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent9.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent9);
+		}
+
+		if ((keyCode == KeyEvent.KEYCODE_F12) && !down) {
+            //setDisplayOutput();
+			Intent intent10 = new Intent();
+			ComponentName cn10 = new ComponentName("com.google.android.youtube", "com.google.android.youtube.app.honeycomb.Shell$HomeActivity");
+			intent10.setComponent(cn10);
+			intent10.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent10.setAction("android.intent.action.MAIN");
+			mContext.startActivity(intent10);
+		}
 
         if (DEBUG_INPUT) {
             Log.d(TAG, "interceptKeyTi keyCode=" + keyCode + " down=" + down + " repeatCount="
